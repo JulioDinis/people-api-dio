@@ -2,8 +2,9 @@ package one.digital.innovation.personapi.controller;
 
 import one.digital.innovation.personapi.dto.MessageResponseDTO;
 import one.digital.innovation.personapi.entity.Person;
-import one.digital.innovation.personapi.repository.PersonRepository;
+import one.digital.innovation.personapi.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
@@ -11,22 +12,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/people") //caminho de acesso principal
 public class PersonController {
 
-
-    private PersonRepository personRepository;
+    private PersonService personService;
 
     @Autowired
-    public PersonController(PersonRepository personRepository){
-        this.personRepository = personRepository;
+    public PersonController(PersonService personService) {
+        this.personService = personService;
     }
 
-
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public MessageResponseDTO createPerson(@RequestBody Person person) {
-        Person savedPerson =personRepository.save(person);
-        return MessageResponseDTO
-                .builder()
-                .message("Created person with ID - "+ savedPerson.getId())
-                .build();
+        return personService.createPerson(person);
     }
 
 }
