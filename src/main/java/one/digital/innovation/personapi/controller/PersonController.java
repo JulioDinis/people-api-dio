@@ -1,5 +1,6 @@
 package one.digital.innovation.personapi.controller;
 
+import lombok.Getter;
 import one.digital.innovation.personapi.dto.MessageResponseDTO;
 import one.digital.innovation.personapi.dto.request.PersonDTO;
 import one.digital.innovation.personapi.entity.Person;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @CrossOrigin
 @RestController //controlador rest
@@ -26,6 +28,11 @@ public class PersonController {
     @ResponseStatus(HttpStatus.CREATED)
     public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO) {
         return personService.createPerson(personDTO);
+    }
+
+    @GetMapping
+    public List<PersonDTO> listAll(){
+       return personService.listAll();
     }
 
 }
