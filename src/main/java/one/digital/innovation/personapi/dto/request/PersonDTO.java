@@ -31,7 +31,8 @@ public class PersonDTO {
     @CPF
     private String cpf;
 
-    private String birtDate;
+
+    private String birthDate;
 
     @Valid
     @NotEmpty
