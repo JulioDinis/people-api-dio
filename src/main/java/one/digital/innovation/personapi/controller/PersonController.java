@@ -1,5 +1,6 @@
 package one.digital.innovation.personapi.controller;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import one.digital.innovation.personapi.dto.MessageResponseDTO;
 import one.digital.innovation.personapi.dto.request.PersonDTO;
@@ -16,14 +17,15 @@ import java.util.List;
 @CrossOrigin
 @RestController //controlador rest
 @RequestMapping("/api/v1/people") //caminho de acesso principal
+@AllArgsConstructor(onConstructor = @__(@Autowired)) // retira o construtor padrão
 public class PersonController {
 
     private PersonService personService;
 
-    @Autowired
-    public PersonController(PersonService personService) {
-        this.personService = personService;
-    }
+//    @Autowired
+//    public PersonController(PersonService personService) {
+//        this.personService = personService;
+//    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
