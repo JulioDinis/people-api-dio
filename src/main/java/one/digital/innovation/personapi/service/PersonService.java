@@ -34,7 +34,6 @@ public class PersonService {
         return createMessageResponse(personToSave.getId(), "Created person with ID - ");
     }
 
-
     public List<PersonDTO> listAll() {
         return personRepository.findAll().stream().map(personMapper::toDTO).collect(Collectors.toList());
     }
